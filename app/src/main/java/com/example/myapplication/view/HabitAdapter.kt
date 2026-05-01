@@ -21,11 +21,54 @@ class HabitAdapter(val habitList: ArrayList<Habit>) : RecyclerView.Adapter<Habit
     }
 
     override fun onBindViewHolder(holder: HabitAdapter.HabitViewHolder, position: Int) {
-        holder.binding.txtNameHabit.text = habitList[position].name
-        holder.binding.txtDescription.text = habitList[position].description
-        holder.binding.progressBar.progress = habitList[position].progress ?: 0
-        holder.binding.txtTarget.text = habitList[position].progressText
-        holder.binding.txtStatus.text = habitList[position].status
+        val habit = habitList[position]
+        holder.binding.txtNameHabit.text = habit.name
+        holder.binding.txtDescription.text = habit.description
+
+        //(sekarang / target) * 100
+        val progressPercentage = (habit.currentProgress.toFloat() / habit.goal.toFloat() * 100).toInt()
+        holder.binding.progressBar.progress = progressPercentage
+
+        holder.binding.txtTarget.text = "${habit.currentProgress} / ${habit.goal} ${habit.unit}"
+
+        holder.binding.txtStatus.text = habit.status
+
+        if (habit.currentProgress >= habit.goal) {
+            habit.status = "Completed"
+        } else {
+            habit.status = "In Progress"
+        }
+
+        holder.binding.btnPlus.setOnClickListener {
+            if (habit.currentProgress < habit.goal) {
+                habit.currentProgress++ // Tambah progress data
+
+                // Cek jika sudah mencapai target
+                if (habit.currentProgress >= habit.goal) {
+                    habit.status = "Completed"
+                }
+
+                // Memperbarui tampilan kartu ini saja
+                notifyItemChanged(position)
+            }
+        }
+
+        holder.binding.btnMinus.setOnClickListener {
+            if (habit.currentProgress > 0) {
+                habit.currentProgress-- // Kurangi progress data
+
+                // Jika dikurangi dari target, status kembali ke In Progress
+                if (habit.currentProgress < habit.goal) {
+                    habit.status = "In Progress"
+                }
+
+                notifyItemChanged(position)
+            }
+        }
+
+//        holder.binding.progressBar.progress = habitList[position].progress ?: 0
+//        holder.binding.txtTarget.text = habitList[position].progressText
+//        holder.binding.txtStatus.text = habitList[position].status
 
     }
     override fun getItemCount(): Int {

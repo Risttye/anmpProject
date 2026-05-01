@@ -19,4 +19,10 @@
         android:name="com.example.myapplication.view.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/createHabitFragment"
+        android:name="com.example.myapplication.view.CreateHabitFragment"
+        android:label="fragment_create_habit"
+        tools:layout="@layout/fragment_create_habit" />
 </navigation>

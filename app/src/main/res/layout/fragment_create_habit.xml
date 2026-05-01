@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a New Habit"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:id="@+id/txtHabitName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Habit Name *" />
+
+    <EditText
+        android:id="@+id/txtShortDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Short Description *"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/txtGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Goal (How many? ex: 8) *"
+        android:inputType="number"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/txtUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Unit (ex: glasses, minutes) *"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Icon *"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:id="@+id/spinnerIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:id="@+id/btnCreateHabit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Habit"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#6200EE" />
+
+</LinearLayout>
