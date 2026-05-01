@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
@@ -39,10 +38,6 @@ class DashboardFragment : Fragment() {
 
         observeViewModel()
         viewModel.refresh()
-
-        binding.fabAddHabit.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.createHabitFragment)
-        }
     }
 
     fun observeViewModel() {
