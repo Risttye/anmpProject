@@ -52,11 +52,9 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageIcon"
             app:layout_constraintTop_toBottomOf="@+id/txtTarget" />
 
@@ -67,38 +65,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_foreground" />
-
-
-        <Button
-            android:id="@+id/btnMinus"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@android:color/darker_gray"
-            android:paddingLeft="0dp"
-            android:paddingTop="0dp"
-            android:paddingRight="0dp"
-            android:paddingBottom="0dp"
-            android:text="-"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlus"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toStartOf="@+id/progressBar"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-        <Button
-            android:id="@+id/btnPlus"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:paddingLeft="0dp"
-            android:paddingTop="0dp"
-            android:paddingRight="0dp"
-            android:paddingBottom="0dp"
-            android:text="+"
-            app:iconPadding="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnMinus"
-            app:layout_constraintTop_toTopOf="@+id/btnMinus"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="324dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
