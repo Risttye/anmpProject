@@ -1,64 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6F6F6"
     android:orientation="vertical"
-    android:padding="20dp">
+    tools:context=".view.CreateHabitFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add a New Habit"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
-
-    <EditText
-        android:id="@+id/txtHabitName"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Habit Name *" />
+        android:layout_height="56dp"
+        android:background="#8617F3"
+        android:paddingStart="4dp"
+        android:paddingEnd="16dp">
 
-    <EditText
-        android:id="@+id/txtShortDescription"
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txtTopBarTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Create New Habit"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Short Description *"
-        android:layout_marginTop="10dp" />
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/txtGoal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Goal (How many? ex: 8) *"
-        android:inputType="number"
-        android:layout_marginTop="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <EditText
-        android:id="@+id/txtUnit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Unit (ex: glasses, minutes) *"
-        android:layout_marginTop="10dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Icon *"
-        android:layout_marginTop="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="28dp">
 
-    <Spinner
-        android:id="@+id/spinnerIcon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:text="Add a New Habit"
+                        android:textColor="#202124"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnCreateHabit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Habit"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="#6200EE" />
+                    <EditText
+                        android:id="@+id/txtHabitName"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_form_field"
+                        android:hint="Habit Name *"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#202124"
+                        android:textColorHint="#8D8D8D"
+                        android:textSize="16sp" />
 
+                    <EditText
+                        android:id="@+id/txtShortDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_form_field"
+                        android:gravity="top"
+                        android:hint="Short Description *"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="#202124"
+                        android:textColorHint="#8D8D8D"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txtGoal"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_form_field"
+                        android:hint="Goal *"
+                        android:inputType="number"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#202124"
+                        android:textColorHint="#8D8D8D"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:text="How many to complete this task?"
+                        android:textColor="#8D8D8D"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/txtUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_form_field"
+                        android:hint="Unit *"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#202124"
+                        android:textColorHint="#8D8D8D"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:text="e.g., glasses, minutes, pages, meals"
+                        android:textColor="#8D8D8D"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Select Icon *"
+                        android:textColor="#6A6A6A"
+                        android:textSize="12sp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_form_field"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnCreateHabit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#8617F3"
+                android:text="Create Habit"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

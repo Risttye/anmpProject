@@ -2,4 +2,9 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="habit_icon">Habit icon</string>
+    <string name="add_habit">Add habit</string>
+    <string name="increase_progress">Increase progress</string>
+    <string name="decrease_progress">Decrease progress</string>
+    <string name="back">Back</string>
 </resources>

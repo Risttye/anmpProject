@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentCreateHabitBinding
-import com.example.myapplication.databinding.FragmentDashboardBinding
 import com.example.myapplication.model.Habit
 import com.example.myapplication.viewmodel.HabitViewModel
 
@@ -33,12 +32,15 @@ class CreateHabitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
 
         val icons = arrayOf("Water", "Fitness", "Book", "Meditation")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, icons)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerIcon.adapter = adapter
+        binding.btnBack.setOnClickListener {
+            Navigation.findNavController(it).popBackStack()
+        }
 
         binding.btnCreateHabit.setOnClickListener {
             val name = binding.txtHabitName.text.toString()
