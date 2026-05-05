@@ -33,6 +33,7 @@ class CreateHabitFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
+        viewModel.initialize(requireContext())
 
         val icons = arrayOf("Water", "Fitness", "Book", "Meditation")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, icons)
