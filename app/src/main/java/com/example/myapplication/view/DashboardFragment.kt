@@ -35,8 +35,11 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
-        viewModel.initialize(requireContext())
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[HabitViewModel::class.java]
+
         habitAdapter = HabitAdapter(arrayListOf()) { position, step ->
             if (position != RecyclerView.NO_POSITION) {
                 viewModel.updateProgress(position, step)

@@ -32,8 +32,10 @@ class CreateHabitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
-        viewModel.initialize(requireContext())
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[HabitViewModel::class.java]
 
         val icons = arrayOf("Water", "Fitness", "Book", "Meditation")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, icons)
@@ -52,7 +54,15 @@ class CreateHabitFragment : Fragment() {
 
             if (name.isNotEmpty() && desc.isNotEmpty() && goal > 0 && unit.isNotEmpty()) {
 
-                val newHabit = Habit(name, desc, 0, goal, unit, icon, "In Progress")
+                val newHabit = Habit(
+                    name = name,
+                    description = desc,
+                    current = 0,
+                    goal = goal,
+                    unit = unit,
+                    icon = icon,
+                    status = "In Progress"
+                )
 
                 // Kirim ke ViewModel untuk disimpan di Gudang (HabitStorage)
                 viewModel.addHabit(newHabit)
