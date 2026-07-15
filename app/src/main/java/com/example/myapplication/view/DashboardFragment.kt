@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
+import com.example.myapplication.model.Habit
 import com.example.myapplication.viewmodel.HabitViewModel
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), HabitCardListener {
 
 
     private lateinit var viewModel: HabitViewModel
@@ -40,11 +41,7 @@ class DashboardFragment : Fragment() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         )[HabitViewModel::class.java]
 
-        habitAdapter = HabitAdapter(arrayListOf()) { position, step ->
-            if (position != RecyclerView.NO_POSITION) {
-                viewModel.updateProgress(position, step)
-            }
-        }
+        habitAdapter = HabitAdapter(arrayListOf(), this)
 
         binding.recHabit.layoutManager = LinearLayoutManager(context)
         binding.recHabit.adapter = habitAdapter
@@ -53,6 +50,11 @@ class DashboardFragment : Fragment() {
         }
 
         observeViewModel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refresh()
     }
 
     fun observeViewModel() {
@@ -83,6 +85,20 @@ class DashboardFragment : Fragment() {
             binding.emptyState.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             binding.recHabit.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
         })
+    }
+    override fun onIncreaseClick(habit: Habit) {
+        viewModel.updateProgress(habit, 1)
+    }
+
+    override fun onDecreaseClick(habit: Habit) {
+        viewModel.updateProgress(habit, -1)
+    }
+
+    override fun onTitleClick(habit: Habit) {
+        val bundle = Bundle().apply {
+            putInt("habitId", habit.id)
+        }
+        Navigation.findNavController(requireView()).navigate(R.id.actionDashboardToEditHabit, bundle)
     }
 
 }

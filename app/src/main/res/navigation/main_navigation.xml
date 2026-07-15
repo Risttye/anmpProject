@@ -22,10 +22,18 @@
         <action
             android:id="@+id/actionDashboardToCreateHabit"
             app:destination="@id/createHabitFragment" />
+        <action
+            android:id="@+id/actionDashboardToEditHabit"
+            app:destination="@id/editHabitFragment" />
     </fragment>
     <fragment
         android:id="@+id/createHabitFragment"
         android:name="com.example.myapplication.view.CreateHabitFragment"
         android:label="fragment_create_habit"
         tools:layout="@layout/fragment_create_habit" />
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="com.example.myapplication.view.EditHabitFragment"
+        android:label="fragment_edit_habit"
+        tools:layout="@layout/fragment_edit_habit" />
 </navigation>
