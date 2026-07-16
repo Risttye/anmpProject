@@ -24,6 +24,7 @@
         android:id="@+id/txtTopStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/bg_status_progress"
         android:paddingStart="14dp"
         android:paddingTop="7dp"
@@ -33,6 +34,18 @@
         android:textColor="#7A4B00"
         android:textSize="13sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDashboardTitle"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogout"
+        app:layout_constraintTop_toTopOf="@+id/txtDashboardTitle" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="#D32F2F"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtDashboardTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtDashboardTitle" />

@@ -49,6 +49,12 @@ class DashboardFragment : Fragment(), HabitCardListener {
             Navigation.findNavController(it).navigate(R.id.actionDashboardToCreateHabit)
         }
 
+        binding.btnLogout.setOnClickListener {
+            val sharedPref = requireContext().getSharedPreferences("user_session", android.content.Context.MODE_PRIVATE)
+            sharedPref.edit().putBoolean("is_logged_in", false).apply()
+            Navigation.findNavController(it).navigate(R.id.actionDashboardToLogin)
+        }
+
         observeViewModel()
     }
 
