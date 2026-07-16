@@ -35,5 +35,9 @@
         android:id="@+id/editHabitFragment"
         android:name="com.example.myapplication.view.EditHabitFragment"
         android:label="fragment_edit_habit"
-        tools:layout="@layout/fragment_edit_habit" />
+        tools:layout="@layout/fragment_edit_habit">
+        <argument
+            android:name="habitId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

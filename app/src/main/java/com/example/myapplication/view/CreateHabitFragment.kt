@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.myapplication.R
@@ -46,10 +47,10 @@ class CreateHabitFragment : Fragment() {
         }
 
         binding.btnCreateHabit.setOnClickListener {
-            val name = binding.txtHabitName.text.toString()
-            val desc = binding.txtShortDescription.text.toString()
+            val name = binding.txtHabitName.text.toString().trim()
+            val desc = binding.txtShortDescription.text.toString().trim()
             val goal = binding.txtGoal.text.toString().toIntOrNull() ?: 0
-            val unit = binding.txtUnit.text.toString()
+            val unit = binding.txtUnit.text.toString().trim()
             val icon = binding.spinnerIcon.selectedItem.toString()
 
             if (name.isNotEmpty() && desc.isNotEmpty() && goal > 0 && unit.isNotEmpty()) {
@@ -64,13 +65,21 @@ class CreateHabitFragment : Fragment() {
                     status = "In Progress"
                 )
 
-                // Kirim ke ViewModel untuk disimpan di Gudang (HabitStorage)
+                binding.btnCreateHabit.isEnabled = false
                 viewModel.addHabit(newHabit)
-
-                // Kembali ke Dashboard[cite: 1]
-                Navigation.findNavController(it).popBackStack()
             } else {
-                // Tampilkan pesan jika ada yang kosong (optional)
+                binding.txtHabitName.error = if (name.isEmpty()) "Habit name is required" else null
+                binding.txtShortDescription.error = if (desc.isEmpty()) "Description is required" else null
+                binding.txtGoal.error = if (goal <= 0) "Goal must be greater than 0" else null
+                binding.txtUnit.error = if (unit.isEmpty()) "Unit is required" else null
+            }
+        }
+
+        viewModel.habitSavedLD.observe(viewLifecycleOwner) { saved ->
+            if (saved) {
+                viewModel.consumeHabitSaved()
+                Toast.makeText(requireContext(), "Habit created", Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).popBackStack()
             }
         }
     }

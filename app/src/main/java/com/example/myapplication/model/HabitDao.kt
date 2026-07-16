@@ -15,7 +15,7 @@ interface HabitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(habit: Habit)
 
-    @Query("SELECT * FROM habit")
+    @Query("SELECT * FROM habit ORDER BY id ASC")
     fun selectAllHabits(): List<Habit>
 
     @Query("SELECT * FROM habit WHERE id = :id")

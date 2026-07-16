@@ -21,6 +21,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
     fun login(username: String, password: String) {
         launch {
             val db = buildDb(getApplication())
+            db.seedDefaultData()
             val user = db.userDao().getUser(username, password)
             if (user != null) {
                 loginSuccessLD.postValue(true)

@@ -14,7 +14,8 @@ import kotlin.coroutines.CoroutineContext
 class HabitViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 
     val habitsLD = MutableLiveData<ArrayList<Habit>>()
-    val habitLD = MutableLiveData<Habit>()
+    val habitLD = MutableLiveData<Habit?>()
+    val habitSavedLD = MutableLiveData(false)
     private val job = Job()
 
     override val coroutineContext: CoroutineContext
@@ -29,10 +30,11 @@ class HabitViewModel(application: Application) : AndroidViewModel(application), 
     }
 
     fun addHabit(habit: Habit) {
+        habitSavedLD.value = false
         launch {
             val db = buildDb(getApplication())
             db.habitDao().insert(habit)
-            refresh()
+            habitSavedLD.postValue(true)
         }
     }
 
@@ -47,18 +49,24 @@ class HabitViewModel(application: Application) : AndroidViewModel(application), 
     }
 
     fun updateHabitDetails(habit: Habit) {
+        habitSavedLD.value = false
         launch {
             val db = buildDb(getApplication())
             db.habitDao().updateHabit(habit)
-            refresh()
+            habitSavedLD.postValue(true)
         }
     }
 
     fun fetch(id: Int) {
+        habitLD.value = null
         launch {
             val db = buildDb(getApplication())
             habitLD.postValue(db.habitDao().selectHabit(id))
         }
+    }
+
+    fun consumeHabitSaved() {
+        habitSavedLD.value = false
     }
 
     fun deleteHabit(habit: Habit) {
